@@ -1,5 +1,5 @@
 {
-  "name": "lfs-barcoder",
+  "name": "lfs-barcode",
   "version": "1.0.0",
   "description": "Barcode generator special for Wildberries",
   "main": "lib/index.js",

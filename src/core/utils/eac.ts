@@ -7,8 +7,7 @@ import path from 'path'
  */
 import * as svgToImg from 'svg-to-img'
 
-const EAC_SVG = `
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+const EAC_SVG_BUFFER = Buffer.from(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -84,11 +83,10 @@ const EAC_SVG = `
   </metadata
   >
 </svg
->
-`
+>`)
 
 export async function createEACImage(width: number, height: number) {
-	const buffer = await svgToImg.from(EAC_SVG).toPng({
+	const buffer = await svgToImg.from(EAC_SVG_BUFFER).toPng({
 		width,
 		height
 	})
