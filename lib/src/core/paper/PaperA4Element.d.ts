@@ -13,7 +13,6 @@ interface CanvasWithCursorState {
     buffer: Buffer;
 }
 export declare class PaperA4Element {
-    millimeters: Dimensions;
     pixels: Dimensions;
     cursor: Dimensions;
     unusedElements: StickerCanvasElement[];

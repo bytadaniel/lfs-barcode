@@ -31,6 +31,7 @@ export declare class StickerCoordinatesRegistry {
     private registerLineCoordinates;
     getWidth(): number;
     getHeight(): number;
+    getVolume(): number;
     setHeight(value: number): void;
     barcode(): void;
     eac(): void;
