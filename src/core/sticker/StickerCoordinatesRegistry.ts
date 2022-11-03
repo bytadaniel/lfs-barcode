@@ -72,7 +72,7 @@ export class StickerCoordinatesRegistry {
 
 	public barcode() {
 		const imageWidth = Math.floor(this.getWidth() * 0.99)
-		const imageHeight = Math.floor(this.getHeight() * 0.45)
+		const imageHeight = Math.floor(this.getHeight() * 0.20)
 
 		const offsetY = 5
 		const offsetX = Math.floor((this.getWidth() - imageWidth) / 2) // align center
