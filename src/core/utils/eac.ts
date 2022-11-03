@@ -8,7 +8,7 @@ import path from 'path'
 import * as svgToImg from 'svg-to-img'
 
 export async function createEACImage(width: number, height: number) {
-	const eacSvg = fs.readFileSync(path.resolve(__dirname, '../../static/eac.svg'))
+	const eacSvg = fs.readFileSync(path.resolve(__dirname, '../../../static/eac.svg'))
 	const buffer = await svgToImg.from(eacSvg).toPng({
 		width,
 		height
