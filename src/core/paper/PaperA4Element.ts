@@ -38,7 +38,6 @@ export class PaperA4Element {
       width: mmToPx(this.millimeters.width),
       height: mmToPx(this.millimeters.height)
     }
-    console.log(this.pixels)
     this.cursor = {
       width: 0,
       height: 0
