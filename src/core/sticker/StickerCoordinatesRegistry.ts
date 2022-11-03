@@ -88,13 +88,13 @@ export class StickerCoordinatesRegistry {
 	}
 
 	public eac() {
-		const imageWidth = Math.floor(this.getWidth() * 0.2)
-		const imageHeight = Math.floor(this.getHeight() * 0.2)
+		const imageWidth = Math.floor(this.getWidth() * 0.15)
+		const imageHeight = Math.floor(this.getHeight() * 0.15)
 
 		const barcodeHeight = this.coordinates.images['barcode']!.y + this.coordinates.images['barcode']!.h
 
 		const positionX = Math.floor((this.getWidth() - imageWidth) / 2) // align center
-		const positionY = barcodeHeight + (barcodeHeight * 0.15) 
+		const positionY = barcodeHeight + (barcodeHeight * 0.1)
 
 		this.registerImageCoordinates(
 			'eac',
