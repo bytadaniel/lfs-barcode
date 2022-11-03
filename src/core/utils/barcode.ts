@@ -24,14 +24,9 @@ export async function createBarcodeImage(type: BarcodeType, data: string, width:
 		const stringSvgHTMLElement = createSvgFromBarcode(data, type)
 
 		const buffer = await sharp(Buffer.from(stringSvgHTMLElement))
-			.resize(width, height)
+			.resize(width, height, { fit: 'fill' })
 			.png({ quality: 100 })
 			.toBuffer()
-
-		// const buffer = await svgToImg.from(stringSvgHTMLElement).toPng({
-		// 	width,
-		// 	height
-		// })
 
 		const image = await loadImage(buffer)
 

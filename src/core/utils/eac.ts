@@ -81,13 +81,9 @@ const EAC_SVG_BUFFER = Buffer.from(`<?xml version="1.0" encoding="UTF-8" standal
 
 export async function createEACImage(width: number, height: number) {
 	const buffer = await sharp(EAC_SVG_BUFFER)
-		.resize(width, height)
+    .resize(width, height, { fit: 'fill' })
 		.png({ quality: 100 })
 		.toBuffer()
-	// const buffer = await svgToImg.from(EAC_SVG_BUFFER).toPng({
-	// 	width,
-	// 	height
-	// })
 	const image = await loadImage(buffer)
 	return image as any
 }
