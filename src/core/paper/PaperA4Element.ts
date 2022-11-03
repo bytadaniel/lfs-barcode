@@ -18,25 +18,19 @@ interface CanvasWithCursorState {
 }
 
 export class PaperA4Element {
-  millimeters: Dimensions;
   pixels: Dimensions;
   cursor: Dimensions;
 
   unusedElements: StickerCanvasElement[];
   matrix: ElementWithCursorState[][];
 
-  constructor(
-  ) {
+  constructor() {
     this.unusedElements = []
     this.matrix = []
 
-    this.millimeters = {
-      width: 210,
-      height: 297
-    }
     this.pixels = {
-      width: mmToPx(this.millimeters.width),
-      height: mmToPx(this.millimeters.height)
+      width: mmToPx(210),
+      height: mmToPx(297)
     }
     this.cursor = {
       width: 0,
@@ -45,7 +39,9 @@ export class PaperA4Element {
   }
 
   private organizeVertical(elements: StickerCanvasElement[]) {
-    const stack = new Stack(elements)
+    const stack = new Stack(
+      elements.sort((a, b) => a.registry.getVolume() - b.registry.getVolume())
+    )
 
     let canUseElement = true
 
@@ -76,9 +72,6 @@ export class PaperA4Element {
 
       // Когда курсор дошел до конца строки
       if (inBoundHeight && !inBoundWidth) {
-        // новая строка
-        this.matrix.push([])
-
         // сдвигаем курсор влево 
         this.cursor.width = 0
         // и в конец высоты первого элемента предыдущей строки
@@ -86,6 +79,8 @@ export class PaperA4Element {
         this.cursor.height = rowHeight
         stack.add(element)
 
+        // новая строка
+        this.matrix.push([])
         continue
       }
 

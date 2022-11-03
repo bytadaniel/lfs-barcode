@@ -6,7 +6,7 @@
   "files": [
     "lib/**/*",
     "*.yml",
-    "*.json"
+    "package*.json"
   ],
   "scripts": {
     "build": "rm -rf lib && tsc -d"

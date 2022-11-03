@@ -62,6 +62,10 @@ export class StickerCoordinatesRegistry {
 		return this.updatedHeight ? this.updatedHeight : this.firstHeight
 	}
 
+	public getVolume () {
+		return 2 * (this.getWidth() + this.getHeight())
+	}
+
 	public setHeight (value: number) {
 		this.updatedHeight = value
 	}
