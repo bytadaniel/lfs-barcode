@@ -72,7 +72,7 @@ export class StickerCoordinatesRegistry {
 
 	public barcode() {
 		const imageWidth = Math.floor(this.getWidth() * 0.99)
-		const imageHeight = Math.floor(this.getHeight() * 0.20)
+		const imageHeight = Math.floor(this.getHeight() * 0.45)
 
 		const offsetY = 5
 		const offsetX = Math.floor((this.getWidth() - imageWidth) / 2) // align center
@@ -88,14 +88,13 @@ export class StickerCoordinatesRegistry {
 	}
 
 	public eac() {
-		const imageWidth = Math.floor(this.getWidth() * 0.1)
-		const imageHeight = Math.floor(this.getHeight() * 0.1)
+		const imageWidth = Math.floor(this.getWidth() * 0.2)
+		const imageHeight = Math.floor(this.getHeight() * 0.2)
 
 		const barcodeHeight = this.coordinates.images['barcode']!.y + this.coordinates.images['barcode']!.h
-		const barcodeWidth = this.coordinates.images['barcode']!.x + this.coordinates.images['barcode']!.w
 
-		const positionX = barcodeWidth - (imageWidth * 1.3)
-		const positionY = barcodeHeight - (barcodeHeight) * 0.1
+		const positionX = Math.floor((this.getWidth() - imageWidth) / 2) // align center
+		const positionY = barcodeHeight + (barcodeHeight * 0.15) 
 
 		this.registerImageCoordinates(
 			'eac',
