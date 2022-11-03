@@ -2,11 +2,7 @@ import { XMLSerializer, DOMImplementation } from 'xmldom'
 import { loadImage } from "canvas";
 import JsBarcode from "jsbarcode";
 import { BarcodeType } from "../../interface";
-/**
- * У этого пакета есть баг
- * При первом запуске может быть ошибка
- */
-import * as svgToImg from 'svg-to-img'
+import sharp from 'sharp';
 
 export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	const xmlSerializer = new XMLSerializer();
@@ -27,10 +23,15 @@ export async function createBarcodeImage(type: BarcodeType, data: string, width:
 	return new Promise<any>(async (resolve, reject) => {
 		const stringSvgHTMLElement = createSvgFromBarcode(data, type)
 
-		const buffer = await svgToImg.from(stringSvgHTMLElement).toPng({
-			width,
-			height
-		})
+		const buffer = await sharp(Buffer.from(stringSvgHTMLElement))
+			.resize(width, height)
+			.png({ quality: 100 })
+			.toBuffer()
+
+		// const buffer = await svgToImg.from(stringSvgHTMLElement).toPng({
+		// 	width,
+		// 	height
+		// })
 
 		const image = await loadImage(buffer)
 

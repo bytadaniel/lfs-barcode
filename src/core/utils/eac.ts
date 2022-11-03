@@ -1,10 +1,5 @@
 import { loadImage } from 'canvas'
 import sharp from 'sharp'
-/**
- * У этого пакета есть баг
- * При первом запуске может быть ошибка
- */
-import * as svgToImg from 'svg-to-img'
 
 const EAC_SVG_BUFFER = Buffer.from(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
