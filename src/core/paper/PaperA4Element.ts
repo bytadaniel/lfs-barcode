@@ -1,4 +1,4 @@
-import { Queue } from "../queue/Queue";
+import { Stack } from "../stack/Stack";
 import { StickerCanvasElement } from "../../api/StickerCanvasElement";
 import { mmToPx } from "../utils/common";
 
@@ -45,12 +45,12 @@ export class PaperA4Element {
   }
 
   private organizeVertical(elements: StickerCanvasElement[]) {
-    const queue = new Queue(elements)
+    const stack = new Stack(elements)
 
     let canUseElement = true
 
-    while (queue.hasNext() && canUseElement) {
-      const element = queue.next()!
+    while (stack.hasElements() && canUseElement) {
+      const element = stack.get()!
 
       const inBoundHeight = this.cursor.height + element.registry.getHeight() <= this.pixels.height
       const inBoundWidth = this.cursor.width + element.registry.getWidth() <= this.pixels.width
@@ -84,7 +84,7 @@ export class PaperA4Element {
         // и в конец высоты первого элемента предыдущей строки
         let rowHeight = this.matrix.map(rows => rows[0]).filter(c => c).reduce((sum, el) => sum += el.element.registry.getHeight(), 0)
         this.cursor.height = rowHeight
-        queue.append(element)
+        stack.add(element)
 
         continue
       }
@@ -92,19 +92,19 @@ export class PaperA4Element {
       // невозможно добавить элемент куда-либо - выход
       if (!inBoundHeight || !inBoundWidth) {
         canUseElement = false
-        queue.append(element) // return to queue
+        stack.add(element) // return to queue
         break
       }
 
       // в случае непредусмотренных ситуаций
       canUseElement = false
-      queue.append(element) // return to queue
+      stack.add(element) // return to queue
       break
     }
 
     // высвобождаем очередь
-    while (queue.hasNext()) {
-      const element = queue.next()!
+    while (stack.hasElements()) {
+      const element = stack.get()!
       this.unusedElements.push(element)
     }
   }
