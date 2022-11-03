@@ -5,7 +5,7 @@ type Base64 = string
 export class PDFImageReader {
     constructor (public base64Images: Base64[]) {}
 
-    public async getFile(): Promise<Uint8Array> {
+    public async getFile(): Promise<Buffer> {
         const pdfDoc = await PDFDocument.create()
 
         for (const [index, base64Image] of this.base64Images.entries()) {
@@ -25,6 +25,6 @@ export class PDFImageReader {
     
         const pdfBytes = await pdfDoc.save()
 
-        return pdfBytes
+        return Buffer.from(pdfBytes)
     }
 }
