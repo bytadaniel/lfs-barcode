@@ -1,5 +1,5 @@
-import { loadImage } from "canvas";
-import { createCanvasWrapper, mmToPx } from "../../utils/common";
+import { createCanvas, loadImage } from "canvas";
+import { mmToPx } from "../../utils/common";
 import { PaperA4Element } from "./PaperA4Element";
 
 export class PaperA4CanvasElement {
@@ -8,7 +8,7 @@ export class PaperA4CanvasElement {
 	public async getCanvas () {
 		const paperElements = this.paper.getUsedElementsWithState()
 
-		const canvas = createCanvasWrapper(mmToPx(210), mmToPx(297))
+		const canvas = createCanvas(mmToPx(210), mmToPx(297))
 		const ctx: CanvasRenderingContext2D = canvas.getContext('2d')
 
 		ctx.fillStyle = 'red'

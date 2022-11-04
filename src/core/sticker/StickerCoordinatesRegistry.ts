@@ -1,5 +1,5 @@
+import { createCanvas } from "canvas"
 import { ElementAliases } from "../../interface"
-import { createCanvasWrapper } from "../../utils/common"
 
 export interface NeccessaryExecutions {
 	barcode: boolean,
@@ -35,7 +35,7 @@ export class StickerCoordinatesRegistry {
 
 		this.coordinates = { images: {}, lines: [] }
 
-		this.canvasCtx = createCanvasWrapper(1,1).getContext('2d')
+		this.canvasCtx = createCanvas(1,1).getContext('2d')
 
 		this.fontSize = fontSize
 
