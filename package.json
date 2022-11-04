@@ -6,7 +6,7 @@
   "files": [
     "lib/**/*",
     "*.yml",
-    "package*.json"
+    "*.json"
   ],
   "scripts": {
     "build": "npm run clean && tsc && npm run copy-files",
