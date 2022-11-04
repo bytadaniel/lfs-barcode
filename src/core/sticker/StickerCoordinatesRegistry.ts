@@ -1,6 +1,5 @@
-import { createCanvas } from "canvas"
-import { BarcodeType, ElementAliases } from "../../interface"
-import { createBarcodeImage } from "../utils/barcode"
+import { ElementAliases } from "../../interface"
+import { createCanvasWrapper } from "../../utils/common"
 
 export interface NeccessaryExecutions {
 	barcode: boolean,
@@ -36,7 +35,7 @@ export class StickerCoordinatesRegistry {
 
 		this.coordinates = { images: {}, lines: [] }
 
-		this.canvasCtx = createCanvas(1,1).getContext('2d')
+		this.canvasCtx = createCanvasWrapper(1,1).getContext('2d')
 
 		this.fontSize = fontSize
 

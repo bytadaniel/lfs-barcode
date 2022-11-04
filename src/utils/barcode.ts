@@ -1,8 +1,8 @@
 import { XMLSerializer, DOMImplementation } from 'xmldom'
-import { loadImage } from "canvas";
-import JsBarcode from "jsbarcode";
-import { BarcodeType } from "../../interface";
-import sharp from 'sharp';
+import { loadImage } from 'canvas'
+import JsBarcode from 'jsbarcode'
+import { BarcodeType } from '../interface'
+import sharp from 'sharp'
 
 export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	const xmlSerializer = new XMLSerializer();

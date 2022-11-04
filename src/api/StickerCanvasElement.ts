@@ -1,8 +1,8 @@
-import { createCanvas } from "canvas";
 import { BarcodeType } from "../interface";
 import { StickerCoordinatesRegistry } from "../core/sticker/StickerCoordinatesRegistry";
-import { createBarcodeImage } from "../core/utils/barcode";
-import { createEACImage } from "../core/utils/eac";
+import { createBarcodeImage } from "../utils/barcode";
+import { createEACImage } from "../utils/eac";
+import { createCanvasWrapper } from "../utils/common";
 
 interface StickerParams {
 	width: number,
@@ -71,7 +71,7 @@ export class StickerCanvasElement {
 	public getCanvas () {
 		this.registry.validate()
 
-		const canvas = createCanvas(this.registry.getWidth(), this.registry.getHeight())
+		const canvas = createCanvasWrapper(this.registry.getWidth(), this.registry.getHeight())
 		const ctx: CanvasRenderingContext2D = canvas.getContext('2d')
 
 		ctx.font = `${this.registry.fontSize}px Arial`
