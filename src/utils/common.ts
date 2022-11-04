@@ -9,13 +9,17 @@ export function mmToPx (mm: number): number {
 
 export function createCanvasWrapper(width: number, height: number, type?: 'pdf'|'svg'): Canvas {
 	const canvas = createCanvas(width, height, type)
-	const fontPath = path.resolve(__dirname, '../fonts/arial.ttf')
-	const fontExists = fs.existsSync(fontPath)
 
-	console.log({ fontPath, fontExists, __dirname })
+	const fontTSPath = path.resolve(__dirname, '../public/fonts/arial.ttf')
+	const fontJSPath = path.resolve(__dirname, '../../public/fonts/arial.ttf')
+
+	const currentPath = __dirname.includes('/lib/') ? fontJSPath : fontTSPath
+	const fontExists = fs.existsSync(currentPath)
+
+	console.log({ currentPath, fontExists, __dirname })
 
 	if (fontExists) {
-		registerFont(fontPath, { family: 'Arial' })
+		registerFont(currentPath, { family: 'Arial' })
 	}
 
 	return canvas

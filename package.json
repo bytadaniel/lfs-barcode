@@ -9,7 +9,9 @@
     "package*.json"
   ],
   "scripts": {
-    "build": "rm -rf lib && tsc -d"
+    "build": "npm run clean && tsc && npm run copy-files",
+    "clean": "rm -rf lib",
+    "copy-files": "cp -R ./src/public/ ./lib/public"
   },
   "keywords": [],
   "author": "@bytadaniel Daniel Byta",
