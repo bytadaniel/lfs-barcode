@@ -6,11 +6,11 @@
   "types": "lib/index.d.ts",
   "module": "lib/esm/index.js",
   "exports": {
-      "require": "./lib/index.js",
-      "import": "./lib/esm/index.js"
+    "require": "./lib/index.js",
+    "import": "./lib/esm/index.js"
   },
   "files": [
-      "lib"
+    "lib"
   ],
   "scripts": {
     "clean": "rm -rf lib",
@@ -31,7 +31,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "canvas": "^2.10.2",
+    "canvas": "^2.6.1",
     "jsbarcode": "^3.11.5",
     "pdf-lib": "^1.17.1",
     "sharp": "^0.31.1",

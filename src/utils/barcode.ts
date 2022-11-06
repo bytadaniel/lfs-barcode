@@ -9,13 +9,11 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 	const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-	JsBarcode(svgNode)
-		.options({
-			font: "OCR-B",
-			xmlDocument: document,
-			format: type,
-		})
-		.render()
+	JsBarcode(svgNode, barcode, {
+		font: "OCR-B",
+		xmlDocument: document,
+		format: type,
+	})
 	
 	const svg = xmlSerializer.serializeToString(svgNode);
 
