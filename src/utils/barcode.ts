@@ -11,7 +11,7 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 
 	JsBarcode(svgNode, barcode, {
 		font: "Arial",
-		displayValue: true,
+		displayValue: false,
 		xmlDocument: document,
 		format: type,
 	})
