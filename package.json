@@ -31,7 +31,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "canvas": "^2.6.1",
+    "canvas": "^2.10.2",
     "jsbarcode": "^3.11.5",
     "pdf-lib": "^1.17.1",
     "sharp": "^0.31.1",
