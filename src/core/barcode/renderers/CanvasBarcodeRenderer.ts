@@ -49,8 +49,6 @@ export class CanvasBarcodeRenderer {
 
 		ctx.fillStyle = this.options.lineColor;
 
-		console.log(encoding)
-
 		for(let index = 0; index < binary.length; index++){
 			const is1 = binary[index] === '1'
 

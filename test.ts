@@ -34,10 +34,7 @@ async function main () {
     
     const base64Papers = await A4.getPapers(canvas => canvas.toDataURL())
     
-    const file = await new PDFImageReader(base64Papers).getFile()
-
-    fs.writeFileSync('./pdf.pdf', file)
-    console.log('file save')
+    const _file = await new PDFImageReader(base64Papers).getFile()
 }
 
 main()
