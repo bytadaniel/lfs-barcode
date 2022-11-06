@@ -1,7 +1,7 @@
 import { XMLSerializer, DOMImplementation } from 'xmldom'
 import { loadImage } from 'canvas'
 import JsBarcode from 'jsbarcode'
-import { BarcodeType } from '../interface'
+import type { BarcodeType } from '../interface'
 import sharp from 'sharp'
 
 export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
@@ -20,7 +20,7 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 }
 
 export async function createBarcodeImage(type: BarcodeType, data: string, width: number, height: number) {
-	return new Promise<any>(async (resolve, reject) => {
+	return new Promise<any>(async (resolve) => {
 		const stringSvgHTMLElement = createSvgFromBarcode(data, type)
 
 		const buffer = await sharp(Buffer.from(stringSvgHTMLElement))

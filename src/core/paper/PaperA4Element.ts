@@ -1,5 +1,5 @@
 import { Stack } from "../stack/Stack";
-import { StickerCanvasElement } from "../../api/StickerCanvasElement";
+import type { StickerCanvasElement } from "../../api/StickerCanvasElement";
 import { mmToPx } from "../../utils/common";
 
 interface Dimensions {

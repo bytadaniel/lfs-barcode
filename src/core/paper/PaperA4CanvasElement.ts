@@ -1,6 +1,6 @@
 import { createCanvas, loadImage } from "canvas";
 import { mmToPx } from "../../utils/common";
-import { PaperA4Element } from "./PaperA4Element";
+import type { PaperA4Element } from "./PaperA4Element";
 
 export class PaperA4CanvasElement {
 	constructor (public paper: PaperA4Element) {}

@@ -1,7 +1,7 @@
 import { PaperA4Element } from "../core/paper/PaperA4Element";
-import { StickerCanvasElement } from "./StickerCanvasElement";
+import type { StickerCanvasElement } from "./StickerCanvasElement";
 import { PaperA4CanvasElement } from "../core/paper/PaperA4CanvasElement";
-import { Canvas } from "canvas";
+import type { Canvas } from "canvas";
 
 export class PaperA4ElementManager {
 	papers: PaperA4Element[];

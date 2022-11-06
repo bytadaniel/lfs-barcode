@@ -1,5 +1,5 @@
 import { createCanvas } from "canvas"
-import { ElementAliases } from "../../interface"
+import type { ElementAliases } from "../../interface"
 
 export interface NeccessaryExecutions {
 	barcode: boolean,
