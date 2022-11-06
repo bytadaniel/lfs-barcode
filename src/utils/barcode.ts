@@ -3,8 +3,6 @@ import { loadImage } from 'canvas'
 import JsBarcode from 'jsbarcode'
 import type { BarcodeType } from '../interface'
 import sharp from 'sharp'
-import { getBarcode } from '../core/barcode/get-barcode'
-import { defaultOptions } from '../core/barcode/options'
 
 export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	const xmlSerializer = new XMLSerializer();
@@ -26,22 +24,6 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 export async function createBarcodeImage(type: BarcodeType, data: string, width: number, height: number) {
 	return new Promise<any>(async (resolve) => {
 		const stringSvgHTMLElement = createSvgFromBarcode(data, type)
-
-		const barcodeCanvas = getBarcode({
-			...defaultOptions,
-			text: data,
-			canvasWidth: width,
-			canvasHeight: height,
-			displayValue: true,
-			format: 'CODE128',
-		})
-
-		console.log(barcodeCanvas.toDataURL())
-
-		// const buffer = await sharp(barcodeCanvas.toBuffer())
-		// 	.resize(width, height, { fit: 'fill' })
-		// 	.png({ quality: 100 })
-		// 	.toBuffer()
 
 		const buffer = await sharp(Buffer.from(stringSvgHTMLElement))
 			.resize(width, height, { fit: 'fill' })
