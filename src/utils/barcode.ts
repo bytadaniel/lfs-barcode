@@ -18,6 +18,9 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 		.render()
 	
 	const svg = xmlSerializer.serializeToString(svgNode);
+
+	console.log(svg)
+
 	return svg
 }
 
