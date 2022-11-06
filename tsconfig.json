@@ -12,6 +12,10 @@
       /* Strict Type-Checking Options */
       "strict": true,
 
+      "types": [
+        "node"
+      ],
+
       /* Additional Checks */
       "exactOptionalPropertyTypes": true,
       "forceConsistentCasingInFileNames": true,

@@ -73,7 +73,7 @@ export class StickerCanvasElement {
 		this.registry.validate()
 
 		const canvas = createCanvas(this.registry.getWidth(), this.registry.getHeight())
-		const ctx: CanvasRenderingContext2D = canvas.getContext('2d')
+		const ctx = canvas.getContext('2d')
 
 		registerFonts()
 
