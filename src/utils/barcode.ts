@@ -20,8 +20,6 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	
 	const svg = xmlSerializer.serializeToString(svgNode);
 
-	console.log(svg)
-
 	return svg
 }
 
@@ -32,14 +30,13 @@ export async function createBarcodeImage(_type: BarcodeType, data: string, width
 		const barcodeCanvas = getBarcode({
 			...defaultOptions,
 			text: data,
-			width,
-			height,
-			font: "OCR-B",
+			canvasWidth: width,
+			canvasHeight: height,
 			displayValue: true,
 			format: 'CODE128',
 		})
 
-
+		console.log(barcodeCanvas.toDataURL())
 
 		const buffer = await sharp(barcodeCanvas.toBuffer())
 			.resize(width, height, { fit: 'fill' })

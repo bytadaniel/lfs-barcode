@@ -1,9 +1,14 @@
 import { API } from "./api";
-import type { BarcodeInputOptions } from "./options";
+import { BarcodeInputOptions, defaultOptions } from "./options";
 
 export function getBarcode(
     options: BarcodeInputOptions
 ) {
-    const canvas = new API().options(options).getRenderer().render()
+    const api = new API()
+
+    const fullOptions = { ...defaultOptions, ...options }
+
+    const canvas = api.getRenderer(fullOptions).render()
+
     return canvas
 }

@@ -1,12 +1,12 @@
 import type { BarcodeInputOptions } from "../options";
 
-export type Encoded = {
+export type Encoding = {
     width?: number;
     height?: number;
     barcodePadding?: number;
-    text: string | undefined;
-    data: string;
+    text?: string;
     options?: BarcodeInputOptions
+    data: string;
 }
 
 export abstract class Barcode {
@@ -22,7 +22,7 @@ export abstract class Barcode {
 
     public abstract valid(): boolean
 
-    public abstract encode(): Encoded
+    public abstract encode(): Encoding
 }
 
 export interface BarcodeRef {

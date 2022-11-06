@@ -35,7 +35,7 @@ export class StickerCoordinatesRegistry {
 
 		this.coordinates = { images: {}, lines: [] }
 
-		this.canvasCtx = createCanvas(1,1).getContext('2d')
+		this.canvasCtx = createCanvas(1,1).getContext('2d') as CanvasRenderingContext2D
 
 		this.fontSize = fontSize
 

@@ -1,42 +1,26 @@
-import { createCanvas } from "canvas";
 import { InvalidInputException } from "./exceptions";
-import ErrorHandler from "./exceptions/ErrorHandler";
-import type { BarcodeRef, Encoded } from "./formats/barcode";
+import type { BarcodeRef, Encoding } from "./formats/barcode";
 import CODE128AUTO from "./formats/code128/CODE128_AUTO";
 import { linearizeEncodings } from "./helpers/linearizeEncodings";
 import { merge } from "./helpers/merge";
-import { BarcodeInputOptions, defaultOptions } from "./options";
-import CanvasRenderer from "./renderers/CanvasRenderer";
+import type { BarcodeInputOptions } from "./options";
+import { CanvasBarcodeRenderer } from "./renderers/CanvasBarcodeRenderer";
 
 export class API {
-    _options: BarcodeInputOptions;
-    _encodings: Encoded[]
+    _encodings: Encoding[]
 
     constructor () {
-        this._options = defaultOptions
         this._encodings = []
     }
 
-    public options (options: BarcodeInputOptions) {
-        this._options = merge(this._options, options);
-	    return this;
+    public getRenderer(options: BarcodeInputOptions)  {
+        const encoded = this.encode(options.text, this.getEncoder(options.format), options);
+        this._encodings.push(...encoded);
+        return new CanvasBarcodeRenderer(this._encodings, options)
     }
 
-    public getRenderer(): CanvasRenderer {
-        return new ErrorHandler(this).wrapBarcodeCall<CanvasRenderer>(
-            (text: string, options: BarcodeInputOptions) => {
-
-				const newOptions: BarcodeInputOptions = merge(this._options, options);
-				const encoded = this.encode(text, this.getEncoder(), newOptions);
-				this._encodings.push(...encoded);
-
-                return new CanvasRenderer(createCanvas(10, 10), this._encodings, newOptions)
-            }
-        ) as CanvasRenderer
-    }
-
-    private getEncoder () {
-        switch (this._options.format) {
+    private getEncoder (format: BarcodeInputOptions['format']) {
+        switch (format) {
             case 'CODE128':
                 return CODE128AUTO
             default:
@@ -45,9 +29,6 @@ export class API {
     }
 
     public encode (text: string, Encoder: BarcodeRef, options: BarcodeInputOptions) {
-        // Ensure that text is a string
-        text = "" + text;
-
         const encoder = new Encoder(text, options);
 
         // If the input is not valid for the encoder, throw error.
