@@ -3,15 +3,22 @@
   "version": "1.0.0",
   "description": "Barcode generator special for Wildberries",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "module": "lib/esm/index.js",
+  "exports": {
+      "require": "./lib/index.js",
+      "import": "./lib/esm/index.js"
+  },
   "files": [
-    "lib/**/*",
-    "*.yml",
-    "*.json"
+      "lib"
   ],
   "scripts": {
-    "build": "npm run clean && tsc && npm run copy-files",
     "clean": "rm -rf lib",
-    "copy-files": "cp -R ./src/public/ ./lib/public"
+    "copy-files": "cp -R ./src/public/ ./lib/public",
+    "build:cjs": "tsc --sourceRoot https://raw.githubusercontent.com/bytdnel/lfs-barcode/$(git rev-parse HEAD)/src/",
+    "build:esm": "npm run build:cjs -- --module esnext --target es2019 --outDir lib/esm && echo '{\"type\":\"module\"}' > lib/esm/package.json",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run copy-files",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "@bytadaniel Daniel Byta",
