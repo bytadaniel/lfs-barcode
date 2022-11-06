@@ -1,6 +1,6 @@
 import type { BarcodeInputOptions } from "./interface";
 
-export const defaultOptions: BarcodeInputOptions = {
+export const defaultOptions = {
 	width: 2,
 	height: 100,
 	format: 'CODE128',
@@ -20,4 +20,4 @@ export const defaultOptions: BarcodeInputOptions = {
 	marginLeft: undefined,
 	marginRight: undefined,
 	valid: () => false,
-}
+} as unknown as BarcodeInputOptions

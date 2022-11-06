@@ -25,12 +25,15 @@ export function createSvgFromBarcode(barcode: string, type: BarcodeType) {
 	return svg
 }
 
-export async function createBarcodeImage(type: BarcodeType, data: string, width: number, height: number) {
+export async function createBarcodeImage(_type: BarcodeType, data: string, width: number, height: number) {
 	return new Promise<any>(async (resolve) => {
 		// const stringSvgHTMLElement = createSvgFromBarcode(data, type)
 
 		const barcodeCanvas = getBarcode({
 			...defaultOptions,
+			text: data,
+			width,
+			height,
 			font: "OCR-B",
 			displayValue: true,
 			format: 'CODE128',
